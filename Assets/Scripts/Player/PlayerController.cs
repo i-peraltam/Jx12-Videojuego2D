@@ -7,13 +7,19 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Transform visual;
     private Transform firePoint;
+    private Rigidbody2D rb;
 
     private float firePointXOriginal;
+
+    [SerializeField] private float jumpForce = 7f;
+
+    private bool isGrounded = false;
 
     void Awake()
     {
         visual = transform.Find("Visual");
         firePoint = transform.Find("FirePoint");
+        rb = GetComponent<Rigidbody2D>();
 
         if (visual != null)
         {
@@ -43,6 +49,17 @@ public class PlayerController : MonoBehaviour
                 Keyboard.current.rightArrowKey.isPressed)
             {
                 movimientoHorizontal = 1f;
+            }
+
+            if ((Keyboard.current.wKey.wasPressedThisFrame ||
+     Keyboard.current.upArrowKey.wasPressedThisFrame) && isGrounded)
+            {
+                rb.linearVelocity = new Vector2(
+                    rb.linearVelocity.x,
+                    jumpForce
+                );
+
+                isGrounded = false;
             }
         }
 
@@ -78,6 +95,22 @@ public class PlayerController : MonoBehaviour
                 posicion.x = firePointXOriginal;
                 firePoint.localPosition = posicion;
             }
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = false;
         }
     }
 }
