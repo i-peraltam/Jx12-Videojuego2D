@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float jumpForce = 7f;
 
+    [SerializeField] private float moveSpeed = 3f;
+
     private bool isGrounded = false;
 
     void Awake()
@@ -63,10 +65,17 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        rb.linearVelocity = new Vector2(
+                movimientoHorizontal * moveSpeed,
+                rb.linearVelocity.y
+        );          
+
         if (animator != null)
         {
             animator.SetFloat("Speed", Mathf.Abs(movimientoHorizontal));
         }
+
+
 
         if (movimientoHorizontal < 0)
         {
