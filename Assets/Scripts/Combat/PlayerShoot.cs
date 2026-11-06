@@ -6,6 +6,9 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firePoint;
 
+    [SerializeField] private float fireRate = 0.25f;
+    private float nextFireTime = 0f;
+
     private SpriteRenderer spriteRenderer;
     private Animator animator;
 
@@ -23,9 +26,11 @@ public class PlayerShoot : MonoBehaviour
     void Update()
     {
         if (Keyboard.current != null &&
-            Keyboard.current.spaceKey.wasPressedThisFrame)
+            Keyboard.current.spaceKey.isPressed &&
+            Time.time >= nextFireTime)
         {
             Shoot();
+            nextFireTime = Time.time + fireRate;
         }
     }
 
