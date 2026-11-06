@@ -7,6 +7,7 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private Transform firePoint;
 
     private SpriteRenderer spriteRenderer;
+    private Animator animator;
 
     void Awake()
     {
@@ -15,6 +16,7 @@ public class PlayerShoot : MonoBehaviour
         if (visual != null)
         {
             spriteRenderer = visual.GetComponent<SpriteRenderer>();
+            animator = visual.GetComponent<Animator>();
         }
     }
 
@@ -29,6 +31,11 @@ public class PlayerShoot : MonoBehaviour
 
     void Shoot()
     {
+        if (animator != null)
+        {
+            animator.SetTrigger("Shoot");
+        }
+
         GameObject nuevaBala = Instantiate(
             bulletPrefab,
             firePoint.position,
