@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "214572836784",
+    "firebase_url": "https://jx12-videojuego2d-default-rtdb.firebaseio.com",
+    "project_id": "jx12-videojuego2d",
+    "storage_bucket": "jx12-videojuego2d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:214572836784:android:76318257019b482b4bd875",
+        "android_client_info": {
+          "package_name": "com.iperaltam.jx12videojuego2d"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2fny8RRRLVtCUGxTPdqVc2MiBKPDZvO4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
